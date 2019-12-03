@@ -78,6 +78,10 @@ type Props = {
    * @optional
    */
   theme: Theme;
+  /**
+   * Whether the backdrop is displayed when open
+   */
+  disableBackdrop: boolean;
 };
 
 type State = {
@@ -233,6 +237,7 @@ class FABGroup extends React.Component<Props, State> {
 
     return (
       <View pointerEvents="box-none" style={[styles.container, style]}>
+        {!this.props.disableBackdrop &&
         <TouchableWithoutFeedback onPress={this.close}>
           <Animated.View
             pointerEvents={open ? 'auto' : 'none'}
@@ -244,7 +249,7 @@ class FABGroup extends React.Component<Props, State> {
               },
             ]}
           />
-        </TouchableWithoutFeedback>
+        </TouchableWithoutFeedback>}
         <SafeAreaView pointerEvents="box-none" style={styles.safeArea}>
           <View pointerEvents={open ? 'box-none' : 'none'}>
             {actions.map((it, i) => (
